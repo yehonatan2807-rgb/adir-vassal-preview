@@ -1,0 +1,4 @@
+Videos (Pexels License, free for commercial use; they show the kind of pieces, not Adir's own work).
+film-wide / film-sq: edited loop of Pexels videos 34369900 and 34369898 (4K sources):
+forward motion only, slowed 1.5x with frame interpolation, joined with 1.2s dissolves so the end flows into the start.
+craft-sq: Pexels video 6262754 (a jeweler setting stones), square crop, end dissolved into start.

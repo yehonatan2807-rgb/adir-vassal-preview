@@ -1,0 +1,32 @@
+Stock photos used on the home page (v4). All under free licences that allow commercial use without payment:
+Unsplash License (https://unsplash.com/license) and Pexels License (https://www.pexels.com/license/).
+They show the kinds of jewelry Adir makes; they are NOT photos of Adir's own pieces.
+
+file               source   id
+cut-round          Unsplash photo-1750767324156-03168af8f8a5  (PRAHANT STUDIO series)
+cut-pear           Unsplash photo-1750767323956-a17f166fe46c  (PRAHANT STUDIO series)
+cut-marquise       Unsplash photo-1750767323968-a4214fd67511  (PRAHANT STUDIO series)
+cut-princess       Unsplash photo-1750767323908-b596494b8741  (PRAHANT STUDIO series)
+cut-radiant        Unsplash photo-1750767323880-d41653e39552  (PRAHANT STUDIO series)
+shapes-all         Unsplash photo-1750767323874-5946ad2c7e91  (PRAHANT STUDIO series)
+trio-stone         Unsplash photo-1750767323886-164156e82e62  (PRAHANT STUDIO series)
+studs-rock         Unsplash photo-1750767323900-fd05b55ccca3  (PRAHANT STUDIO series)
+pear-halo-dark     Unsplash photo-1607703829739-c05b7beddf60
+hand-emerald       Unsplash photo-1780250784120-c83d1bbbebe8
+laurel-earrings    Unsplash photo-1693213085235-ea6deadf8cee
+wrist-bracelet     Unsplash photo-1763029513623-37d488cb97b1
+neck-solitaire     Unsplash photo-1762505464446-c0760d740aee
+hand-rings         Unsplash photo-1762505464779-17f78cbfa8b4
+bracelet-dark      Unsplash photo-1573408301185-9146fe634ad0
+bench-hands        Unsplash photo-1624588057318-5f1b2eb81012
+ring-beam          Pexels   30541171
+three-rings-navy   Pexels   12427696
+cushion-bridal     Unsplash photo-1589674668791-4889d2bba4c6
+rings-white-silk   Unsplash photo-1587947330318-88fcd9055420
+emerald-yellow     Unsplash photo-1598560917807-1bae44bd2be8
+oval-rose-white    Unsplash photo-1499899833954-5ecd9439d17f
+ring-box-navy      Unsplash photo-1559006864-38a01f201f95
+ring-leaf          Unsplash photo-1769038937075-110ba53a8b82
+studs-green        Unsplash photo-1769078595478-5f756986b818
+halo-cushion-white Unsplash photo-1586104195538-050b9f74f58e
+solitaire-blue     Unsplash photo-1724937798320-d0c4fac1787d
