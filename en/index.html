@@ -324,7 +324,7 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   <section class="hero" aria-label="Opening">
     <img class="hero__poster" src="../video/film.jpg" alt="">
-    <video id="film" muted playsinline loop preload="metadata" data-wide="../video/film-1080.mp4" data-big="../video/film-4k.mp4" data-sq="../video/film-sq.mp4" data-sq-poster="../video/film-sq.jpg" aria-hidden="true"></video>
+    <video id="film" muted playsinline loop preload="metadata" data-wide="../video/film-1080.mp4" data-big="../video/film-4k.mp4" data-sq="../video/film-m.mp4" data-sq-poster="../video/film-sq.jpg" aria-hidden="true"></video>
     <div class="hero__mark">
       <h1>ADIR VASSAL</h1>
       <p>DIAMONDS &amp; JEWELRY</p>
@@ -465,7 +465,7 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
         <p>I work from inside the Israel Diamond Exchange in Ramat Gan, where diamonds are bought, examined and change hands. That is where I choose the stones I show my clients.</p>
       </article>
       <article class="rv">
-        <div class="story__media"><video id="bench" src="../video/craft.mp4" poster="../video/craft.jpg" muted playsinline loop preload="none" aria-label="A jeweler setting stones in a piece"></video></div>
+        <div class="story__media"><video id="bench" data-full="../video/craft.mp4" data-m="../video/craft-m.mp4" poster="../video/craft.jpg" muted playsinline loop preload="none" aria-label="A jeweler setting stones in a piece"></video></div>
         <span class="num">#2</span>
         <h2>The diamond comes first</h2>
         <p>I would rather fit the diamond to the ring than the ring to whatever happens to be in stock. Once you approve the design, the piece is made to measure and handed to you in person.</p>
@@ -613,10 +613,12 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
       var el = k.v;
       if (!k.wants()) { k.stuck = 0; return; }
       if (el.paused) { k.play(); return; }
-      if (el.currentTime === k.last) k.stuck++; else k.stuck = 0;
-      k.last = el.currentTime;
-      if (k.stuck === 3) { el.pause(); k.play(); }
-      else if (k.stuck >= 8) {
+      // a film that is still downloading is not stuck: only act when neither the picture nor the download moves
+      var got = el.buffered.length ? el.buffered.end(el.buffered.length - 1) : 0;
+      if (el.currentTime === k.last && got === k.got) k.stuck++; else k.stuck = 0;
+      k.last = el.currentTime; k.got = got;
+      if (k.stuck === 3 && el.readyState >= 3) { el.pause(); k.play(); }
+      else if (k.stuck >= 15) {
         var at = el.currentTime;
         k.stuck = 0;
         el.addEventListener('loadedmetadata', function once() {
@@ -661,7 +663,19 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   // the bench film only runs on screen
   var bv = document.getElementById('bench');
-  if (bv && !reduce) { bv.preload = 'metadata'; watch(keep(bv, false), .3); }
+  if (bv && !reduce) {
+    var benchFilm = keep(bv, false);
+    // nothing downloads until the visitor scrolls near it, so the opening film gets the whole connection
+    var near = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      near.disconnect();
+      bv.preload = 'auto';
+      bv.src = narrow ? bv.dataset.m : bv.dataset.full;
+      benchFilm.play();
+    }, { rootMargin: '500px 0px' });
+    near.observe(bv);
+    watch(benchFilm, .3);
+  }
 
   if (keepers.length) {
     document.addEventListener('visibilitychange', resumeAll);
