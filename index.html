@@ -289,6 +289,12 @@ h1, h2, h3, p { margin: 0; }
   .lb__hint { display: none; }
   .lb__nav { top: 40%; }
 }
+/* background films: never show the phone's own play button over the still frame */
+video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-play-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
 </style>
 </head>
 <body>
@@ -558,12 +564,82 @@ h1, h2, h3, p { margin: 0; }
   var narrow = matchMedia('(max-width: 760px)').matches;
   var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  // films keep themselves running: they retry when the browser refuses or interrupts playback,
+  // after returning to the tab/app, and on the first tap when autoplay is blocked (iPhone Low Power Mode)
+  var keepers = [], needTap = false;
+  function keep(el, startVisible) {
+    var k = { v: el, visible: startVisible, last: -1, stuck: 0, errors: 0 };
+    k.wants = function () { return k.visible && !document.hidden; };
+    k.play = function () {
+      if (!k.wants() || !el.paused) return;
+      el.muted = true;
+      var p = el.play();
+      if (p && p.catch) p.catch(function (err) { if (err && err.name === 'NotAllowedError') needTap = true; });
+    };
+    el.muted = true; el.defaultMuted = true; el.setAttribute('muted', '');
+    el.playsInline = true; el.setAttribute('playsinline', ''); el.setAttribute('webkit-playsinline', '');
+    el.loop = true; el.controls = false;
+    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'ended'].forEach(function (n) { el.addEventListener(n, k.play); });
+    el.addEventListener('playing', function () { needTap = false; k.errors = 0; k.stuck = 0; });
+    el.addEventListener('pause', function () { setTimeout(k.play, 350); });
+    el.addEventListener('error', function () {
+      if (k.errors >= 3) return;
+      k.errors++;
+      setTimeout(function () { el.load(); k.play(); }, 1000 * k.errors);
+    });
+    keepers.push(k);
+    return k;
+  }
+  function watch(k, threshold) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        k.visible = e.isIntersecting;
+        if (e.isIntersecting) k.play(); else if (!k.v.paused) k.v.pause();
+      });
+    }, { threshold: threshold }).observe(k.v);
+  }
+  function resumeAll() { keepers.forEach(function (k) { k.play(); }); }
+  function onGesture() {
+    if (!needTap) return;
+    keepers.forEach(function (k) {
+      if (!k.v.paused) return;
+      if (k.wants()) { k.play(); return; }
+      var p = k.v.play();
+      if (p && p.then) p.then(function () { if (!k.wants()) k.v.pause(); }).catch(function () {});
+    });
+  }
+  function watchdog() {
+    keepers.forEach(function (k) {
+      var el = k.v;
+      if (!k.wants()) { k.stuck = 0; return; }
+      if (el.paused) { k.play(); return; }
+      if (el.currentTime === k.last) k.stuck++; else k.stuck = 0;
+      k.last = el.currentTime;
+      if (k.stuck === 3) { el.pause(); k.play(); }
+      else if (k.stuck >= 8) {
+        var at = el.currentTime;
+        k.stuck = 0;
+        el.addEventListener('loadedmetadata', function once() {
+          el.removeEventListener('loadedmetadata', once);
+          try { el.currentTime = at; } catch (err) {}
+        });
+        el.load(); k.play();
+      }
+    });
+  }
+
   // opening film
   var v = document.getElementById('film');
   if (v) {
     if (narrow) { v.poster = v.dataset.sqPoster; document.querySelector('.hero__poster').src = v.dataset.sqPoster; }
     var huge = innerWidth * (devicePixelRatio || 1) > 2100;
-    if (!reduce) { v.src = narrow ? v.dataset.sq : (huge ? v.dataset.big : v.dataset.wide); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (!reduce) {
+      var heroFilm = keep(v, true);
+      v.preload = 'auto';
+      v.src = narrow ? v.dataset.sq : (huge ? v.dataset.big : v.dataset.wide);
+      heroFilm.play();
+      watch(heroFilm, 0.05);
+    }
   }
 
   // header + mobile menu
@@ -585,9 +661,18 @@ h1, h2, h3, p { margin: 0; }
 
   // the bench film only runs on screen
   var bv = document.getElementById('bench');
-  if (bv && !reduce) new IntersectionObserver(function (es) {
-    if (es[0].isIntersecting) { bv.preload = 'auto'; var q = bv.play(); if (q && q.catch) q.catch(function () {}); } else bv.pause();
-  }, { threshold: .3 }).observe(bv);
+  if (bv && !reduce) { bv.preload = 'metadata'; watch(keep(bv, false), .3); }
+
+  if (keepers.length) {
+    document.addEventListener('visibilitychange', resumeAll);
+    addEventListener('pageshow', resumeAll);
+    addEventListener('focus', resumeAll);
+    addEventListener('online', resumeAll);
+    ['touchend', 'pointerup', 'click', 'keydown'].forEach(function (n) {
+      document.addEventListener(n, onGesture, { passive: true });
+    });
+    setInterval(watchdog, 2000);
+  }
 
   // full view of a piece
   var lb = document.getElementById('lb'), stage = document.getElementById('lb-stage'), big = document.getElementById('lb-img');

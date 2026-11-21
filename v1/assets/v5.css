@@ -473,3 +473,10 @@ body { font-weight: 400; color: var(--ink); }
   .page-v5 .ask5 .chips span { padding: 0 14px; }
   .page-v5 .vask { padding: 34px 0 36px; }
 }
+
+/* background films: never show the phone's own play button over the still frame */
+video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-play-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
