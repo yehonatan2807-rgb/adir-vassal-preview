@@ -1,0 +1,17 @@
+Catalog photos (img/<key>.webp and <key>-s.webp), updated 2026-11-28.
+Free licences that allow commercial use without payment or attribution:
+Pexels License (https://www.pexels.com/license/) and Unsplash License (https://unsplash.com/license).
+These are stock photos of the kinds of jewelry Adir makes. They are NOT photos of Adir's own pieces.
+Each was put on a plain white background, centred and resized for the catalog (clean_v2.py in stock-options/).
+
+key                  source    id / page
+rose-solitaire       Pexels    14466162   The Glorious Studio  https://www.pexels.com/photo/14466162/
+rose-solitaire-side  Pexels    14466164   The Glorious Studio  https://www.pexels.com/photo/14466164/
+studs                Pexels    28389455   The Glorious Studio  https://www.pexels.com/photo/28389455/
+ruby-halo            Pexels    32622561                        https://www.pexels.com/photo/32622561/
+cluster-pendant      Pexels    10215179                        https://www.pexels.com/photo/10215179/
+bangle               Pexels    25283503                        https://www.pexels.com/photo/25283503/
+emerald-yellow       Unsplash  photo-1598560917807-1bae44bd2be8
+halo-cushion         Unsplash  photo-1586104195538-050b9f74f58e
+oval-rose            Unsplash  photo-1499899833954-5ecd9439d17f
+cushion-pendant      Unsplash  photo-1598560917505-59a3ad559071

@@ -1,0 +1,7 @@
+Opening film (film-1080, film-4k, film-phone, film-m and the two posters), cut 2026-11-28 with film/edit_film.py.
+A first version built only from free stock clips (Pexels License, https://www.pexels.com/license/: free for
+commercial use, no attribution required). None of it shows Adir or his own pieces; his own originals will replace it.
+
+Pexels video ids used: 10220222, 4170286, 6570964, 34369898, 7555069, 4910096, 31220655, 8971890, 8116707,
+6839673, 8902835, 28428788, 34369900, 9180784, 38647468.
+The craft film (craft*.mp4) is unchanged.

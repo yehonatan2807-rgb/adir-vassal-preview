@@ -29,23 +29,26 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "JewelryStore", "name": "Adir Vassal Diamonds", "url": "https://yehonatan2807-rgb.github.io/adir-vassal-preview/", "image": "https://yehonatan2807-rgb.github.io/adir-vassal-preview/img/share.jpg", "telephone": "+972-50-464-6220", "priceRange": "₪₪₪", "address": {"@type": "PostalAddress", "addressLocality": "Ramat Gan", "addressCountry": "IL", "streetAddress": "Israel Diamond Exchange"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "10:00", "closes": "18:00"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Red+Rose:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root {
-  --ink: #0a0a0a; --soft: #6b6b6b; --line: #e7e5e1; --paper: #ffffff; --stone: #f6f5f2; --onyx: #0b0b0b;
+  --ink: #0a0a0a; --soft: #6b6b6b; --line: #e7e5e1; --paper: #ffffff; --stone: #f6f5f2; --onyx: #0b0b0b; --champ: #c9ad8a;
   --he: "Heebo", system-ui, sans-serif;
-  --wide: "Red Rose", "Montserrat", sans-serif;
-  --lat: "Montserrat", sans-serif;
+  --wide: "Tenor Sans", "Heebo", sans-serif;
+  --lat: "Heebo", system-ui, sans-serif;
   --serif: "Cormorant Garamond", Georgia, serif;
   --gut: clamp(16px, 3vw, 40px);
   --max: 1200px;
   --ease: cubic-bezier(.4, 0, .2, 1);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; font-family: var(--he); font-weight: 300; font-size: 15px; line-height: 1.7; color: var(--ink); background: var(--paper); }
-[lang=en] body { font-family: var(--lat); font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* jump links stop below the fixed header */
+#pieces, #story, #about, #meet { scroll-margin-top: 56px; }
+#bridal, #types { scroll-margin-top: 104px; }
+body { margin: 0; font-family: var(--he); font-weight: 300; font-size: 15px; line-height: 1.7; color: var(--ink); background: var(--paper); font-synthesis: none; }
+[lang=en] body { font-family: var(--lat); }
 img, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
@@ -54,23 +57,21 @@ h1, h2, h3, p { margin: 0; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .wrap { max-width: var(--max); margin-inline: auto; }
 
-/* headings: wide, spaced, quiet, like Rotfeld's section titles */
+/* headings: quiet; Hebrew stays tight so the words keep their shape */
 .h { text-align: center; font-weight: 500; font-size: clamp(17px, 1.45vw, 21px); letter-spacing: .14em; }
-[lang=en] :is(.h, .feat h2, .story h2, .hello__txt h2, .meet h2, .tile__lab b) { font-family: var(--wide); font-weight: 500; text-transform: uppercase; letter-spacing: .12em; }
-.lat { display: block; font-family: var(--wide); font-weight: 400; font-size: 10.5px; letter-spacing: .32em; color: var(--soft); margin-bottom: 8px; text-transform: uppercase; }
+[lang=en] :is(.h, .feat h2, .story h2, .hello__txt h2, .meet h2, .tile__lab b) { font-family: var(--wide); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+[lang=he] :is(.h, .feat h2, .story h2, .hello__txt h2, .meet h2, .tile__lab b, .pc h3, .stone b, .look__pc h3, .lb__side h2) { letter-spacing: .02em; }
 
-/* buttons: the black fill wipes away and leaves an outline, as on Rotfeld */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 7px; border: 1px solid var(--ink); cursor: pointer;
-  padding: 10px 22px; font-weight: 500; font-size: 13.5px; letter-spacing: .04em; color: #fff; background-color: #fff;
-  background-image: linear-gradient(var(--ink), var(--ink)); background-repeat: no-repeat; background-position: right center; background-size: 101% 101%;
-  transition: background-size .45s var(--ease), color .45s var(--ease); }
-[dir=ltr] .btn { background-position: left center; }
-.btn--light { color: var(--ink); background-color: transparent; border-color: #fff; background-image: linear-gradient(#fff, #fff); }
-.btn--ghost { color: #fff; background-color: transparent; border-color: rgba(255,255,255,.45); background-image: linear-gradient(#fff, #fff); background-size: 0 101%; }
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; border-radius: 2px; border: 1px solid var(--ink); cursor: pointer;
+  padding: 10px 24px; font-weight: 400; font-size: 14px; letter-spacing: .03em; color: #fff; background-color: var(--ink);
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
+.btn--light { color: var(--ink); background-color: #fff; border-color: #fff; }
+.btn--ghost { color: #fff; background-color: transparent; border-color: rgba(255,255,255,.45); }
 @media (hover: hover) and (pointer: fine) {
-  .btn:hover { background-size: 0 101%; color: var(--ink); }
-  .btn--light:hover { color: #fff; }
-  .btn--ghost:hover { background-size: 101% 101%; color: var(--ink); border-color: #fff; }
+  .btn:hover { background-color: #fff; color: var(--ink); }
+  .btn--light:hover { background-color: transparent; color: #fff; }
+  .btn--ghost:hover { background-color: #fff; color: var(--ink); border-color: #fff; }
 }
 
 /* links: the underline draws and undraws */
@@ -90,19 +91,24 @@ h1, h2, h3, p { margin: 0; }
 .hd.is-solid { position: fixed; top: 0; background: #fff; color: var(--ink); box-shadow: 0 1px 0 var(--line); }
 .hd__in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px var(--gut); }
 .nav { display: flex; gap: clamp(14px, 1.8vw, 26px); font-size: 13px; font-weight: 500; letter-spacing: .06em; }
-[lang=en] .nav { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; }
-.logo { display: grid; justify-items: center; gap: 3px; }
+[lang=en] .nav { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.logo { display: grid; justify-items: center; align-content: center; gap: 3px; min-height: 44px; min-width: 44px; }
 .logo img { width: 40px; height: auto; filter: brightness(0) invert(1); transition: filter .35s; }
 .hd.is-solid .logo img { filter: brightness(0); }
 .logo span { white-space: nowrap; font-family: var(--serif); font-size: 12px; letter-spacing: .38em; margin-inline-end: -.38em; }
 .icons { display: flex; gap: 16px; justify-content: flex-end; align-items: center; }
 .icons svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.4; transition: scale .3s var(--ease); }
-.icons a:hover svg { scale: 1.12; }
-.lang { font-family: var(--wide); font-size: 11.5px; letter-spacing: .14em; border: 1px solid currentColor; border-radius: 5px; padding: 3px 7px 2px; line-height: 1.4; transition: background-color .3s; }
-.lang:hover { background: currentColor; }
-.lang:hover span { color: #000; }
-.hd.is-solid .lang:hover span, .hd.open .lang:hover span { color: #fff; }
-.burger { display: none; background: none; border: 0; color: inherit; padding: 4px; cursor: pointer; }
+.lang { font-family: var(--wide); font-size: 12px; letter-spacing: .14em; border: 1px solid currentColor; border-radius: 5px; padding: 3px 7px 2px; line-height: 1.4; transition: background-color .3s; }
+@media (hover: hover) and (pointer: fine) {
+  .icons a:hover svg { scale: 1.12; }
+  .lang:hover { background: currentColor; }
+  .lang:hover span { color: #000; }
+  .hd.is-solid .lang:hover span, .hd.open .lang:hover span { color: #fff; }
+}
+.burger { display: none; background: none; border: 0; color: inherit; padding: 0; cursor: pointer; }
+.burger svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.burger .x, .hd.open .burger .b { display: none; }
+.hd.open .burger .x { display: block; }
 
 /* ---- hero */
 .hero { position: relative; height: calc(100svh - 36px); min-height: 500px; background: #111; overflow: hidden; color: #fff; }
@@ -110,11 +116,10 @@ h1, h2, h3, p { margin: 0; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.12) 40%, rgba(0,0,0,.38)); }
 .hero__mark { position: absolute; inset: 0; z-index: 2; display: grid; place-content: center; text-align: center; }
 .hero__mark h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.6vw, 66px); letter-spacing: .2em; margin-inline-end: -.2em; line-height: 1; }
-.hero__mark p { font-family: var(--wide); font-size: clamp(9.5px, .75vw, 11px); letter-spacing: .5em; margin-top: 12px; opacity: .9; }
-.hero__down { position: absolute; z-index: 2; bottom: 26px; left: 50%; translate: -50% 0; width: 38px; height: 38px; border-radius: 50%;
-  background: rgba(0,0,0,.35); display: grid; place-items: center; backdrop-filter: blur(4px); transition: background-color .3s; }
-.hero__down:hover { background: rgba(0,0,0,.6); }
-.hero__down svg { width: 13px; stroke: #fff; fill: none; stroke-width: 1.6; }
+.hero__mark p { font-family: var(--wide); font-size: clamp(12px, .85vw, 13px); letter-spacing: .3em; margin-top: 12px; text-shadow: 0 1px 10px rgba(0,0,0,.6); }
+.hero__down { position: absolute; z-index: 2; bottom: 26px; left: 50%; translate: -50% 0; width: 44px; height: 44px;
+  display: grid; place-items: center; }
+.hero__down svg { width: 20px; stroke: #fff; fill: none; stroke-width: 1.6; }
 @media (prefers-reduced-motion: no-preference) { .hero__down:hover svg { animation: nudge .5s var(--ease); } }
 @keyframes nudge { 50% { translate: 0 4px; } }
 
@@ -125,17 +130,34 @@ h1, h2, h3, p { margin: 0; }
 .center { text-align: center; margin-top: clamp(28px, 3.4vw, 44px); }
 
 /* ---- catalog grid */
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 2.6vw, 36px) clamp(12px, 1.6vw, 22px); }
+/* four to a row; a short last row sits in the middle so the catalog stays symmetric */
+.grid { --cg: clamp(12px, 1.6vw, 22px); display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(24px, 2.6vw, 36px) var(--cg); }
+.grid > .pc { width: calc((100% - 3 * var(--cg)) / 4); }
 .pc { text-align: center; }
 .pc__img { position: relative; overflow: hidden; display: block; width: 100%; padding: 0; border: 0; background: #fff; cursor: zoom-in; }
 .pc__img img { width: 100%; aspect-ratio: 1; object-fit: contain; }
-.pc__exp { position: absolute; z-index: 2; top: 10px; inset-inline-end: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.92);
-  border: 1px solid var(--line); display: grid; place-items: center; opacity: 0; transition: opacity .3s; }
-.pc__exp svg { width: 13px; fill: none; stroke: var(--ink); stroke-width: 1.5; }
-.pc__img:hover .pc__exp, .pc__img:focus-visible .pc__exp { opacity: 1; }
-@media (hover: none) { .pc__exp { opacity: 1; } }
+/* hover: the piece drifts closer while one band of light crosses the metal and stones (white stays white) */
+.pc__img > img { transition: transform 1.6s cubic-bezier(.16, .8, .24, 1); }
+.pc__img::after { content: ""; position: absolute; inset: -10%; z-index: 1; pointer-events: none; opacity: 0; mix-blend-mode: overlay;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%); transform: translateX(-70%); }
+.pc h3::after { content: ""; display: block; width: 30px; height: 1px; margin: 7px auto 0; background: var(--champ); transform: scaleX(0); transition: transform .7s var(--ease); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .pc__img:hover > img, .pc__img:focus-visible > img { transform: scale(1.07); }
+  .pc__img:hover::after, .pc__img:focus-visible::after { animation: glint 1.5s .12s cubic-bezier(.3, .1, .3, 1) both; }
+  [dir=rtl] .pc__img:hover::after, [dir=rtl] .pc__img:focus-visible::after { animation-direction: reverse; }
+  .pc:hover h3::after { transform: scaleX(1); }
+}
+@keyframes glint { 0% { opacity: 0; transform: translateX(-70%); } 18%, 82% { opacity: 1; } 100% { opacity: 0; transform: translateX(70%); } }
+.pc[hidden] { display: none; }
+.grid.is-few { display: flex; flex-wrap: wrap; justify-content: center; }
+.grid.is-few .pc { width: min(300px, 72vw); }
+.fl { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: calc(-1 * clamp(8px, 1vw, 14px)) 0 clamp(24px, 3vw, 36px); }
+.fl button { min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--ink); font-size: 13px; letter-spacing: .04em; cursor: pointer; transition: background-color .3s, border-color .3s, color .3s; }
+.fl button[aria-pressed=true] { background: var(--ink); border-color: var(--ink); color: #fff; }
+@media (hover: hover) and (pointer: fine) { .fl button:hover { border-color: var(--ink); } }
+.fl__ask { text-align: center; margin-top: 30px; }
 .pc h3 { margin-top: 12px; font-weight: 500; font-size: 13.5px; letter-spacing: .08em; }
-[lang=en] .pc h3 { font-family: var(--wide); text-transform: uppercase; font-size: 11.5px; letter-spacing: .1em; }
+[lang=en] .pc h3 { font-family: var(--wide); text-transform: uppercase; font-size: 12px; letter-spacing: .1em; }
 .pc p { font-size: 12.5px; color: var(--soft); margin-top: 1px; }
 .pc__more { display: inline-block; margin-top: 6px; font-size: 12px; }
 
@@ -172,8 +194,7 @@ h1, h2, h3, p { margin: 0; }
 .story article { text-align: center; }
 .story__media { aspect-ratio: 1.15; overflow: hidden; }
 .story__media img, .story__media video { width: 100%; height: 100%; object-fit: cover; }
-.num { display: block; margin-top: 22px; font-family: var(--wide); font-size: 10.5px; letter-spacing: .3em; color: #9a9a9a; }
-.story h2 { margin: 6px 0 12px; font-weight: 500; font-size: clamp(17px, 1.45vw, 21px); letter-spacing: .14em; }
+.story h2 { margin: 22px 0 12px; font-weight: 500; font-size: clamp(17px, 1.45vw, 21px); letter-spacing: .14em; }
 .story p { color: #c9c8c4; max-width: 30em; margin-inline: auto; line-height: 1.85; }
 .story .ul { display: inline-block; margin-top: 14px; color: #fff; }
 
@@ -186,16 +207,19 @@ h1, h2, h3, p { margin: 0; }
 .look__img img { width: 100%; height: 100%; object-fit: cover; }
 .look__pc { text-align: center; display: grid; justify-items: center; }
 .look__pc img { width: min(230px, 70%); aspect-ratio: 1; object-fit: contain; }
-.look__pc h3 { margin-top: 8px; font-weight: 500; font-size: 14px; letter-spacing: .08em; }
+.look { touch-action: pan-y; }
+.look__tag { margin-top: 8px; font-size: 12px; letter-spacing: .06em; color: var(--soft); }
+.look__pc h3 { margin-top: 2px; font-weight: 500; font-size: 14px; letter-spacing: .08em; }
 [lang=en] .look__pc h3 { font-family: var(--wide); text-transform: uppercase; font-size: 12px; }
 .look__pc p { color: var(--soft); font-size: 13px; margin: 2px 0 16px; }
-.arrow { position: absolute; z-index: 3; top: 50%; translate: 0 -50%; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; display: grid; place-items: center; transition: background-color .3s, color .3s; }
-.arrow:hover { background: #fff; color: var(--ink); }
+.arrow { position: absolute; z-index: 3; top: 50%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 2px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; display: grid; place-items: center; transition: background-color .3s, color .3s; }
+@media (hover: hover) and (pointer: fine) { .arrow:hover { background: #fff; color: var(--ink); } }
 .arrow svg { width: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 [dir=ltr] .arrow svg { scale: -1 1; }
-.arrow--prev { inset-inline-start: calc(-1 * clamp(8px, 4vw, 60px)); }
-.arrow--next { inset-inline-end: calc(-1 * clamp(8px, 4vw, 60px)); }
-@media (prefers-reduced-motion: no-preference) {
+/* the arrows sit outside the carousel only as far as the page margin allows */
+.arrow--prev { inset-inline-start: calc(-1 * clamp(8px, (100vw - 940px) / 2 - 12px, 60px)); }
+.arrow--next { inset-inline-end: calc(-1 * clamp(8px, (100vw - 940px) / 2 - 12px, 60px)); }
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   .arrow--next:hover svg { animation: nudgex .45s var(--ease); }
   .arrow--prev:hover svg { animation: nudgex .45s var(--ease) reverse; }
 }
@@ -221,13 +245,13 @@ h1, h2, h3, p { margin: 0; }
 /* ---- footer: centred */
 .ft { text-align: center; padding: 48px var(--gut) 32px; }
 .ft__logo { display: inline-grid; justify-items: center; gap: 5px; margin-bottom: 30px; }
-.ft__logo img { width: 46px; filter: brightness(0); }
+.ft__logo img { width: 46px; }
 .ft__logo span { font-family: var(--serif); letter-spacing: .36em; margin-inline-end: -.36em; font-size: 13px; }
 .ft__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 780px; margin: 0 auto; }
-.ft h3 { font-family: var(--wide); font-weight: 400; font-size: 10.5px; letter-spacing: .28em; color: var(--soft); margin-bottom: 12px; }
+.ft h3 { font-weight: 400; font-size: 13px; color: var(--soft); margin-bottom: 12px; }
 .ft ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: 13.5px; color: #444; justify-items: center; }
 .ft a:hover { color: var(--ink); }
-.ft__base { border-top: 1px solid var(--line); padding: 16px var(--gut); font-size: 11.5px; color: var(--soft); font-family: var(--lat); letter-spacing: .08em; text-align: center; }
+.ft__base { border-top: 1px solid var(--line); padding: 16px var(--gut); font-size: 12px; color: var(--soft); font-family: var(--lat); letter-spacing: .08em; text-align: center; }
 
 /* ---- full view of a piece */
 .lb { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: #fff; color: var(--ink); }
@@ -236,20 +260,18 @@ h1, h2, h3, p { margin: 0; }
 @media (prefers-reduced-motion: no-preference) { .lb[open] { animation: lbin .4s var(--ease); } }
 @keyframes lbin { from { opacity: 0; } }
 .lb__stage { position: relative; display: grid; place-items: center; overflow: hidden; background: #fff; cursor: zoom-in; }
-.lb__stage img { width: min(88vh, 92%); height: auto; aspect-ratio: 1; object-fit: contain; transition: transform .5s var(--ease); transform-origin: var(--ox, 50%) var(--oy, 50%); }
-.lb__stage.is-zoom { cursor: zoom-out; }
+.lb__stage img { width: min(88vh, 92%); height: auto; max-height: 100%; aspect-ratio: 1; object-fit: contain; transition: transform .5s var(--ease); transform-origin: var(--ox, 50%) var(--oy, 50%); }
+.lb__stage.is-zoom { cursor: zoom-out; touch-action: none; }
+.lb.is-one .lb__nav { display: none; }
 .lb__stage.is-zoom img { transform: scale(2.2); }
 .lb__side { border-inline-start: 1px solid var(--line); padding: 72px 32px 32px; display: flex; flex-direction: column; gap: 10px; text-align: center; }
 .lb__side h2 { font-weight: 500; font-size: 18px; letter-spacing: .1em; }
 [lang=en] .lb__side h2 { font-family: var(--wide); text-transform: uppercase; font-size: 15px; }
 .lb__side p { color: var(--soft); }
-.lb__thumbs { display: flex; gap: 8px; justify-content: center; margin: 14px 0 18px; }
-.lb__thumbs button { width: 64px; height: 64px; padding: 0; border: 1px solid var(--line); background: #fff; cursor: pointer; transition: border-color .3s; }
-.lb__thumbs button[aria-current=true] { border-color: var(--ink); }
-.lb__thumbs img { width: 100%; height: 100%; object-fit: contain; }
+.lb__side .btn { margin-top: 12px; }
 .lb__hint { font-size: 12px; color: var(--soft); margin-top: auto; }
-.lb__x, .lb__nav { position: absolute; z-index: 3; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--ink); background: #fff; color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: background-color .3s, color .3s; }
-.lb__x:hover, .lb__nav:hover { background: var(--ink); color: #fff; }
+.lb__x, .lb__nav { position: absolute; z-index: 3; width: 40px; height: 40px; border-radius: 2px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: background-color .3s, color .3s; }
+@media (hover: hover) and (pointer: fine) { .lb__x:hover, .lb__nav:hover { background: var(--ink); color: #fff; } }
 .lb__x { top: 18px; inset-inline-end: 18px; }
 .lb__x svg, .lb__nav svg { width: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .lb__nav { top: 50%; translate: 0 -50%; }
@@ -264,16 +286,23 @@ h1, h2, h3, p { margin: 0; }
 
 /* ---- phones */
 @media (max-width: 900px) {
-  .note { font-size: 11px; letter-spacing: .04em; }
+  .note { font-size: 12px; letter-spacing: .04em; }
   .nav { display: none; }
-  .burger { display: block; }
-  .logo { grid-column: 2; } .icons { grid-column: 3; gap: 12px; }
+  .burger { display: grid; place-items: center; grid-column: 1; grid-row: 1; justify-self: start; width: 40px; height: 40px; margin-inline-start: -9px; position: relative; z-index: 2; }
+  .logo { grid-column: 2; grid-row: 1; } .icons { grid-column: 3; grid-row: 1; gap: 2px; }
+  .icons a:not(.lang) { display: grid; place-items: center; width: 36px; height: 40px; }
+  .icons a:last-child { margin-inline-end: -8px; }
+  .lang { padding: 6px 8px 5px; margin-inline-end: 2px; }
+  .pc__more, .ul { display: inline-block; padding-top: 6px; padding-bottom: 5px; }
+  .pc__more { margin-top: 2px; }
+  .ft a { display: inline-block; padding-block: 3px; }
   .hd .logo span { display: none; } .logo img { width: 38px; }
   .hero__mark h1 { font-size: 9vw; letter-spacing: .14em; margin-inline-end: -.14em; }
   .hd.open { position: fixed; top: 0; inset-block-end: 0; background: #fff; color: var(--ink); }
   .hd.open .logo img { filter: brightness(0); }
   .hd.open .nav { display: grid; justify-items: center; position: absolute; top: 90px; inset-inline: 0; padding: 20px var(--gut); gap: 22px; font-size: 19px; }
   .grid, .tiles { grid-template-columns: repeat(2, 1fr); }
+  .grid > .pc { width: calc((100% - var(--cg)) / 2); }
   .feat { grid-template-columns: 1fr 1fr; }
   .feat__txt { grid-column: 1 / -1; order: -1; }
   .story, .look, .hello__in { grid-template-columns: 1fr; }
@@ -283,11 +312,20 @@ h1, h2, h3, p { margin: 0; }
   .ft__cols { grid-template-columns: 1fr; gap: 22px; }
   .arrow--prev { inset-inline-start: 8px; } .arrow--next { inset-inline-end: 8px; }
   .arrow { top: 26%; }
-  .lb[open] { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .lb[open] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
   .lb__stage img { width: 94vw; }
   .lb__side { border-inline-start: 0; border-top: 1px solid var(--line); padding: 18px var(--gut) 24px; }
   .lb__hint { display: none; }
   .lb__nav { top: 40%; }
+}
+/* a phone held sideways: picture beside the details, so the piece stays visible */
+@media (max-width: 900px) and (max-height: 520px) and (orientation: landscape) {
+  .lb[open] { grid-template-columns: minmax(0, 1fr) minmax(220px, 38vw); grid-template-rows: minmax(0, 1fr); }
+  .lb__stage img { width: auto; height: 92dvh; max-width: 100%; }
+  .lb__side { border-top: 0; border-inline-start: 1px solid var(--line); padding: 12px 20px; gap: 4px; justify-content: center; overflow-y: auto; }
+  .lb__side h2 { font-size: 15px; padding-inline: 34px; }
+  .lb__nav { top: 50%; }
+  .lb__x { top: 8px; inset-inline-end: 8px; }
 }
 /* background films: never show the phone's own play button over the still frame */
 video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
@@ -295,6 +333,13 @@ video::-webkit-media-controls-panel { display: none !important; -webkit-appearan
 video::-webkit-media-controls-play-button { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
+@media (max-width: 760px) {
+  .logo { min-width: 44px; min-height: 44px; align-content: center; }
+  .icons a:not(.lang) { width: 40px; height: 44px; }
+  .lang, .pc__more { position: relative; }
+  .lang::after { content: ''; position: absolute; inset: -9px -3px; }
+  .pc__more::after { content: ''; position: absolute; inset: -9px -6px; }
+}
 </style>
 </head>
 <body>
@@ -303,8 +348,9 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
 <header class="hd" id="hd">
   <div class="hd__in">
+    <button class="burger" type="button" aria-expanded="false" aria-controls="hd" aria-label="תפריט"><svg class="b" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg><svg class="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
     <nav class="nav" aria-label="ראשי">
-      <a href="#pieces">קטלוג</a>
+      <a href="#pieces" data-cat="all">קטלוג</a>
       <a href="#bridal">טבעות אירוסין</a>
       <a href="#types">לפי סוג</a>
       <a href="#about">אודות</a>
@@ -315,7 +361,6 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
       <a class="lang" href="en/index.html" hreflang="en" lang="en" aria-label="English version"><span>EN</span></a>
       <a href="tel:+972504646220" aria-label="חיוג, 050-464-6220"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
       <a href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" target="_blank" rel="noopener" aria-label="וואטסאפ (נפתח בחלון חדש)"><svg viewBox="0 0 24 24"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 1a4.6 4.6 0 0 1-2.4-2.4l1-1-1-2z"/></svg></a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="hd" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
     </div>
   </div>
 </header>
@@ -323,8 +368,8 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 <main id="top">
 
   <section class="hero" aria-label="פתיחה">
-    <img class="hero__poster" src="video/film.jpg" alt="">
-    <video id="film" muted playsinline loop preload="metadata" data-wide="video/film-1080.mp4" data-big="video/film-4k.mp4" data-sq="video/film-m.mp4" data-sq-poster="video/film-sq.jpg" aria-hidden="true"></video>
+    <img class="hero__poster" src="video/film.jpg?v=3" alt="">
+    <video id="film" muted playsinline loop preload="metadata" data-wide="video/film-1080.mp4?v=3" data-big="video/film-4k.mp4?v=3" data-phone="video/film-phone.mp4?v=3" data-lite="video/film-m.mp4?v=3" data-sq-poster="video/film-sq.jpg?v=3" aria-hidden="true"></video>
     <div class="hero__mark">
       <h1>ADIR VASSAL</h1>
       <p>DIAMONDS &amp; JEWELRY</p>
@@ -334,81 +379,91 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   <section class="sec" id="pieces">
     <div class="wrap">
-      <h2 class="h sec__head rv"><span class="lat">Selected pieces</span>תכשיטים נבחרים</h2>
+      <h2 class="h sec__head rv">תכשיטים נבחרים</h2>
+      <div class="fl rv" role="group" aria-label="סינון הקטלוג"><button type="button" data-filter="all" aria-pressed="true">הכל</button><button type="button" data-filter="ring" aria-pressed="false" data-ask="לשיחה עם אדיר על טבעות" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%98%D7%91%D7%A2%D7%95%D7%AA">טבעות</button><button type="button" data-filter="necklace" aria-pressed="false" data-ask="לשיחה עם אדיר על שרשראות ותליונים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A9%D7%A8%D7%A9%D7%A8%D7%90%D7%95%D7%AA%20%D7%95%D7%AA%D7%9C%D7%99%D7%95%D7%A0%D7%99%D7%9D">שרשראות ותליונים</button><button type="button" data-filter="earring" aria-pressed="false" data-ask="לשיחה עם אדיר על עגילים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%D7%9D">עגילים</button><button type="button" data-filter="bracelet" aria-pressed="false" data-ask="לשיחה עם אדיר על צמידים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A6%D7%9E%D7%99%D7%93%D7%99%D7%9D">צמידים</button></div>
       <div class="grid rv">
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/solitaire.webp|img/solitaire-2.webp" data-name="טבעת סוליטר" data-desc="יהלום עגול, שישה זיזים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/solitaire-s.webp" srcset="img/solitaire-s.webp 1000w, img/solitaire.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="טבעת סוליטר, יהלום עגול, שישה זיזים" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/rose-solitaire.webp?v=5" data-name="טבעת סוליטר" data-desc="זהב אדום, יהלום עגול" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/rose-solitaire-s.webp?v=5" srcset="img/rose-solitaire-s.webp?v=5 1200w, img/rose-solitaire.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="טבעת סוליטר, זהב אדום, יהלום עגול" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
-          <h3>טבעת סוליטר</h3><p>יהלום עגול, שישה זיזים</p>
+          <h3>טבעת סוליטר</h3><p>זהב אדום, יהלום עגול</p>
           <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/emerald-yellow.webp|img/emerald-yellow-2.webp" data-name="טבעת אמרלד" data-desc="זהב צהוב, שורת יהלומים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%9E%D7%A8%D7%9C%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/emerald-yellow-s.webp" srcset="img/emerald-yellow-s.webp 1000w, img/emerald-yellow.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="טבעת אמרלד, זהב צהוב, שורת יהלומים" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/emerald-yellow.webp?v=5" data-name="טבעת אמרלד" data-desc="זהב צהוב, שורת יהלומים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%9E%D7%A8%D7%9C%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/emerald-yellow-s.webp?v=5" srcset="img/emerald-yellow-s.webp?v=5 1200w, img/emerald-yellow.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="טבעת אמרלד, זהב צהוב, שורת יהלומים" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
           <h3>טבעת אמרלד</h3><p>זהב צהוב, שורת יהלומים</p>
           <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%9E%D7%A8%D7%9C%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/halo-cushion.webp|img/halo-cushion-2.webp" data-name="טבעת הילה כפולה" data-desc="באגטים במרכז, זהב לבן" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%94%D7%99%D7%9C%D7%94%20%D7%9B%D7%A4%D7%95%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/halo-cushion-s.webp" srcset="img/halo-cushion-s.webp 1000w, img/halo-cushion.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="טבעת הילה כפולה, באגטים במרכז, זהב לבן" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="earring">
+          <button class="pc__img" type="button" data-img="img/studs.webp?v=5" data-name="עגילים צמודים" data-desc="יהלומים עגולים, זוג תואם" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%D7%9D%20%D7%A6%D7%9E%D7%95%D7%93%D7%99%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/studs-s.webp?v=5" srcset="img/studs-s.webp?v=5 1200w, img/studs.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="עגילים צמודים, יהלומים עגולים, זוג תואם" loading="lazy">
+            <span class="sr">הצגה בגודל מלא</span>
+          </button>
+          <h3>עגילים צמודים</h3><p>יהלומים עגולים, זוג תואם</p>
+          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%D7%9D%20%D7%A6%D7%9E%D7%95%D7%93%D7%99%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
+        </article>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/halo-cushion.webp?v=5" data-name="טבעת הילה כפולה" data-desc="באגטים במרכז, זהב לבן" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%94%D7%99%D7%9C%D7%94%20%D7%9B%D7%A4%D7%95%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/halo-cushion-s.webp?v=5" srcset="img/halo-cushion-s.webp?v=5 1200w, img/halo-cushion.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="טבעת הילה כפולה, באגטים במרכז, זהב לבן" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
           <h3>טבעת הילה כפולה</h3><p>באגטים במרכז, זהב לבן</p>
           <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%94%D7%99%D7%9C%D7%94%20%D7%9B%D7%A4%D7%95%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/studs.webp|img/studs-2.webp" data-name="עגילי צמוד" data-desc="יהלומים עגולים, זוג תואם" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%20%D7%A6%D7%9E%D7%95%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/studs-s.webp" srcset="img/studs-s.webp 1000w, img/studs.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="עגילי צמוד, יהלומים עגולים, זוג תואם" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="necklace">
+          <button class="pc__img" type="button" data-img="img/cushion-pendant.webp?v=5" data-name="תליון קושן עם הילה" data-desc="זהב לבן, שרשרת עדינה" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%A7%D7%95%D7%A9%D7%9F%20%D7%A2%D7%9D%20%D7%94%D7%99%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/cushion-pendant-s.webp?v=5" srcset="img/cushion-pendant-s.webp?v=5 1200w, img/cushion-pendant.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="תליון קושן עם הילה, זהב לבן, שרשרת עדינה" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
-          <h3>עגילי צמוד</h3><p>יהלומים עגולים, זוג תואם</p>
-          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%20%D7%A6%D7%9E%D7%95%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
+          <h3>תליון קושן עם הילה</h3><p>זהב לבן, שרשרת עדינה</p>
+          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%A7%D7%95%D7%A9%D7%9F%20%D7%A2%D7%9D%20%D7%94%D7%99%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/oval-rose.webp|img/oval-rose-2.webp" data-name="טבעת אובל עם הילה" data-desc="זהב אדום" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%95%D7%91%D7%9C%20%D7%A2%D7%9D%20%D7%94%D7%99%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/oval-rose-s.webp" srcset="img/oval-rose-s.webp 1000w, img/oval-rose.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="טבעת אובל עם הילה, זהב אדום" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/oval-rose.webp?v=5" data-name="טבעת אובל עם הילה" data-desc="זהב אדום" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%95%D7%91%D7%9C%20%D7%A2%D7%9D%20%D7%94%D7%99%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/oval-rose-s.webp?v=5" srcset="img/oval-rose-s.webp?v=5 1200w, img/oval-rose.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="טבעת אובל עם הילה, זהב אדום" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
           <h3>טבעת אובל עם הילה</h3><p>זהב אדום</p>
           <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%95%D7%91%D7%9C%20%D7%A2%D7%9D%20%D7%94%D7%99%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/bangle.webp|img/bangle-2.webp" data-name="צמיד קשיח" data-desc="שתי שורות יהלומים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A6%D7%9E%D7%99%D7%93%20%D7%A7%D7%A9%D7%99%D7%97%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/bangle-s.webp" srcset="img/bangle-s.webp 1000w, img/bangle.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="צמיד קשיח, שתי שורות יהלומים" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="bracelet">
+          <button class="pc__img" type="button" data-img="img/bangle.webp?v=5" data-name="צמיד קשיח" data-desc="שורות יהלומים, זהב אדום" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A6%D7%9E%D7%99%D7%93%20%D7%A7%D7%A9%D7%99%D7%97%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/bangle-s.webp?v=5" srcset="img/bangle-s.webp?v=5 1200w, img/bangle.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="צמיד קשיח, שורות יהלומים, זהב אדום" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
-          <h3>צמיד קשיח</h3><p>שתי שורות יהלומים</p>
+          <h3>צמיד קשיח</h3><p>שורות יהלומים, זהב אדום</p>
           <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A6%D7%9E%D7%99%D7%93%20%D7%A7%D7%A9%D7%99%D7%97%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/pear-pendant.webp|img/pear-pendant-2.webp" data-name="תליון טיפה" data-desc="זהב צהוב, שרשרת עדינה" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%98%D7%99%D7%A4%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/pear-pendant-s.webp" srcset="img/pear-pendant-s.webp 1000w, img/pear-pendant.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="תליון טיפה, זהב צהוב, שרשרת עדינה" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/ruby-halo.webp?v=5" data-name="טבעת רובי" data-desc="רובי אובלי, הילת באגטים" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A8%D7%95%D7%91%D7%99%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/ruby-halo-s.webp?v=5" srcset="img/ruby-halo-s.webp?v=5 1200w, img/ruby-halo.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="טבעת רובי, רובי אובלי, הילת באגטים" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
-          <h3>תליון טיפה</h3><p>זהב צהוב, שרשרת עדינה</p>
-          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%98%D7%99%D7%A4%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
+          <h3>טבעת רובי</h3><p>רובי אובלי, הילת באגטים</p>
+          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A8%D7%95%D7%91%D7%99%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
-        <article class="pc">
-          <button class="pc__img" type="button" data-imgs="img/twin-ring.webp|img/twin-ring-2.webp" data-name="טבעת טואה-א-מואה" data-desc="שתי אבנים, טבעת פתוחה" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%98%D7%95%D7%90%D7%94-%D7%90-%D7%9E%D7%95%D7%90%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
-            <img src="img/twin-ring-s.webp" srcset="img/twin-ring-s.webp 1000w, img/twin-ring.webp 2000w" sizes="(max-width: 900px) 50vw, 290px" width="1000" height="1000" alt="טבעת טואה-א-מואה, שתי אבנים, טבעת פתוחה" loading="lazy">
-            <span class="pc__exp" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5M2.5 13.5l4.5-4.5"/></svg></span>
+        <article class="pc" data-c="ring">
+          <button class="pc__img" type="button" data-img="img/rose-solitaire-side.webp?v=5" data-name="סוליטר שישה זיזים" data-desc="זהב אדום, טבעת דקה" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%A9%D7%99%D7%A9%D7%94%20%D7%96%D7%99%D7%96%D7%99%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/rose-solitaire-side-s.webp?v=5" srcset="img/rose-solitaire-side-s.webp?v=5 1200w, img/rose-solitaire-side.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="סוליטר שישה זיזים, זהב אדום, טבעת דקה" loading="lazy">
             <span class="sr">הצגה בגודל מלא</span>
           </button>
-          <h3>טבעת טואה-א-מואה</h3><p>שתי אבנים, טבעת פתוחה</p>
-          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%98%D7%95%D7%90%D7%94-%D7%90-%D7%9E%D7%95%D7%90%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
+          <h3>סוליטר שישה זיזים</h3><p>זהב אדום, טבעת דקה</p>
+          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%A9%D7%99%D7%A9%D7%94%20%D7%96%D7%99%D7%96%D7%99%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
+        </article>
+        <article class="pc" data-c="necklace">
+          <button class="pc__img" type="button" data-img="img/cluster-pendant.webp?v=5" data-name="תליון אשכול" data-desc="אשכול יהלומים, זהב לבן" data-wa="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%90%D7%A9%D7%9B%D7%95%D7%9C%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" aria-haspopup="dialog">
+            <img src="img/cluster-pendant-s.webp?v=5" srcset="img/cluster-pendant-s.webp?v=5 1200w, img/cluster-pendant.webp?v=5 2400w" sizes="(max-width: 900px) 50vw, 290px" width="1200" height="1200" alt="תליון אשכול, אשכול יהלומים, זהב לבן" loading="lazy">
+            <span class="sr">הצגה בגודל מלא</span>
+          </button>
+          <h3>תליון אשכול</h3><p>אשכול יהלומים, זהב לבן</p>
+          <a class="pc__more" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%90%D7%A9%D7%9B%D7%95%D7%9C%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
         </article>
       </div>
+      <p class="fl__ask" id="fl-ask" hidden><a class="ul" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" target="_blank" rel="noopener"><span></span><span class="sr"> (נפתח בוואטסאפ)</span></a></p>
     </div>
   </section>
 
@@ -416,7 +471,6 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     <div class="wrap feat rv">
       <figure class="feat__pic" style="margin:0"><img src="img/bridal-silk.webp" width="1640" height="2000" alt="טבעת אירוסין וטבעת נישואין על משי לבן" loading="lazy"></figure>
       <div class="feat__txt">
-        <span class="lat">The bridal edit</span>
         <h2>טבעות אירוסין</h2>
         <p>כל טבעת אירוסין מתחילה ביהלום אחד. בפגישה בבורסה מונחות על השולחן כמה אבנים, משווים ביניהן בעין, ורק אחרי שבחרתם את האבן בונים סביבה את הטבעת: סוליטר, הילה או אבני צד, בזהב צהוב, לבן או אדום.</p>
         <a class="ul" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%98%D7%91%D7%A2%D7%95%D7%AA%20%D7%90%D7%99%D7%A8%D7%95%D7%A1%D7%99%D7%9F" target="_blank" rel="noopener">לשיחה על טבעת אירוסין<span class="sr"> (נפתח בוואטסאפ)</span></a>
@@ -427,19 +481,19 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   <section class="sec sec--tight" id="types">
     <div class="wrap">
-      <h2 class="h sec__head rv"><span class="lat">By type</span>תכשיטים לפי סוג</h2>
+      <h2 class="h sec__head rv">תכשיטים לפי סוג</h2>
       <div class="tiles rv">
-        <a class="tile" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%98%D7%91%D7%A2%D7%95%D7%AA" target="_blank" rel="noopener">
-          <img src="img/p/hand-emerald-1200.webp" srcset="img/p/hand-emerald-1200.webp 1200w, img/p/hand-emerald-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="יד עם טבעת יהלום מלבני בזהב צהוב" loading="lazy"><span class="tile__lab"><b>טבעות</b><i>לפרטים</i></span><span class="sr"> (נפתח בוואטסאפ)</span>
+        <a class="tile" href="#pieces" data-cat="ring">
+          <img src="img/p/hand-emerald-1200.webp" srcset="img/p/hand-emerald-1200.webp 1200w, img/p/hand-emerald-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="יד עם טבעת יהלום מלבני בזהב צהוב" loading="lazy"><span class="tile__lab"><b>טבעות</b><i>לצפייה</i></span>
         </a>
-        <a class="tile" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A9%D7%A8%D7%A9%D7%A8%D7%90%D7%95%D7%AA%20%D7%95%D7%AA%D7%9C%D7%99%D7%95%D7%A0%D7%99%D7%9D" target="_blank" rel="noopener">
-          <img src="img/p/neck-solitaire-1200.webp" srcset="img/p/neck-solitaire-1200.webp 1200w, img/p/neck-solitaire-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="תליון יהלום בודד על שרשרת דקה" loading="lazy"><span class="tile__lab"><b>שרשראות ותליונים</b><i>לפרטים</i></span><span class="sr"> (נפתח בוואטסאפ)</span>
+        <a class="tile" href="#pieces" data-cat="necklace">
+          <img src="img/p/neck-solitaire-1200.webp" srcset="img/p/neck-solitaire-1200.webp 1200w, img/p/neck-solitaire-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="תליון יהלום בודד על שרשרת דקה" loading="lazy"><span class="tile__lab"><b>שרשראות ותליונים</b><i>לצפייה</i></span>
         </a>
-        <a class="tile" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A2%D7%92%D7%99%D7%9C%D7%99%D7%9D" target="_blank" rel="noopener">
-          <img src="img/p/laurel-earrings-1200.webp" srcset="img/p/laurel-earrings-1200.webp 1200w, img/p/laurel-earrings-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="עגילים בצורת זר עלים משובצים יהלומים" loading="lazy"><span class="tile__lab"><b>עגילים</b><i>לפרטים</i></span><span class="sr"> (נפתח בוואטסאפ)</span>
+        <a class="tile" href="#pieces" data-cat="earring">
+          <img src="img/p/laurel-earrings-1200.webp" srcset="img/p/laurel-earrings-1200.webp 1200w, img/p/laurel-earrings-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="עגילים בצורת זר עלים משובצים יהלומים" loading="lazy"><span class="tile__lab"><b>עגילים</b><i>לצפייה</i></span>
         </a>
-        <a class="tile" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A6%D7%9E%D7%99%D7%93%D7%99%D7%9D" target="_blank" rel="noopener">
-          <img src="img/p/wrist-bracelet-1200.webp" srcset="img/p/wrist-bracelet-1200.webp 1200w, img/p/wrist-bracelet-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="צמיד טניס דק על פרק כף היד" loading="lazy"><span class="tile__lab"><b>צמידים</b><i>לפרטים</i></span><span class="sr"> (נפתח בוואטסאפ)</span>
+        <a class="tile" href="#pieces" data-cat="bracelet">
+          <img src="img/p/wrist-bracelet-1200.webp" srcset="img/p/wrist-bracelet-1200.webp 1200w, img/p/wrist-bracelet-2400.webp 2400w" sizes="(max-width: 900px) 50vw, 300px" alt="צמיד טניס דק על פרק כף היד" loading="lazy"><span class="tile__lab"><b>צמידים</b><i>לצפייה</i></span>
         </a>
       </div>
     </div>
@@ -447,7 +501,7 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   <section class="sec sec--tight">
     <div class="wrap">
-      <h2 class="h sec__head rv"><span class="lat">From the table</span>מהשולחן בבורסה</h2>
+      <h2 class="h sec__head rv">מהשולחן בבורסה</h2>
       <div class="stones rv">
         <figure class="stone"><div class="frame"><img src="img/p/shapes-all-1200.webp" srcset="img/p/shapes-all-1200.webp 1200w, img/p/shapes-all-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 400px" alt="" loading="lazy"></div><figcaption><b>כל הצורות</b>עגול, אובל, טיפה, אמרלד ועוד, זה לצד זה</figcaption></figure>
         <figure class="stone"><div class="frame"><img src="img/p/trio-stone-1200.webp" srcset="img/p/trio-stone-1200.webp 1200w, img/p/trio-stone-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 400px" alt="" loading="lazy"></div><figcaption><b>משווים בעין</b>כמה אבנים על השולחן, ובוחרים יחד</figcaption></figure>
@@ -460,13 +514,11 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     <div class="wrap story">
       <article class="rv">
         <div class="story__media"><img src="img/p/bench-hands-1200.webp" srcset="img/p/bench-hands-1200.webp 1200w, img/p/bench-hands-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 600px" width="3200" height="2133" alt="ידיים של צורף מעבדות טבעת על שולחן העבודה" loading="lazy"></div>
-        <span class="num">#1</span>
         <h2>מתוך הבורסה</h2>
         <p>אני עובד מתוך בורסת היהלומים ברמת גן. שם היהלומים נקנים, נבדקים ועוברים מיד ליד, ושם אני בוחר את האבנים שאני מראה ללקוחות.</p>
       </article>
       <article class="rv">
-        <div class="story__media"><video id="bench" data-full="video/craft.mp4" data-m="video/craft-m.mp4" poster="video/craft.jpg" muted playsinline loop preload="none" aria-label="צורף משבץ אבנים בתכשיט"></video></div>
-        <span class="num">#2</span>
+        <div class="story__media"><video id="bench" data-full="video/craft.mp4" data-phone="video/craft-phone.mp4" data-m="video/craft-m.mp4" poster="video/craft.jpg" muted playsinline loop preload="none" aria-label="צורף משבץ אבנים בתכשיט"></video></div>
         <h2>היהלום נבחר קודם</h2>
         <p>אני מעדיף להתאים את היהלום לטבעת, ולא את הטבעת למה שבמקרה יש במלאי. אחרי שמאשרים את העיצוב, התכשיט מיוצר לפי מידה ונמסר ביד.</p>
         <a class="ul" href="#about">על אדיר</a>
@@ -475,29 +527,32 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
   </section>
 
   <section class="sec">
-    <h2 class="h sec__head rv"><span class="lat">The look</span>השראה</h2>
+    <h2 class="h sec__head rv">השראה</h2>
     <div class="looks rv" aria-roledescription="קרוסלה">
         <div class="look is-on" data-look>
-          <div class="look__img"><img src="img/p/hand-rings-1200.webp" srcset="img/p/hand-rings-1200.webp 1200w, img/p/hand-rings-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 460px" alt="יד עם שתי טבעות יהלום עדינות" loading="lazy"></div>
+          <div class="look__img"><img src="img/p/hand-emerald-1200.webp" srcset="img/p/hand-emerald-1200.webp 1200w, img/p/hand-emerald-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 460px" alt="יד עם טבעת יהלום מלבני בזהב צהוב" loading="lazy"></div>
           <div class="look__pc">
-            <img src="img/solitaire-s.webp" alt="" loading="lazy">
-            <h3>טבעת סוליטר</h3><p>יהלום עגול, שישה זיזים</p>
-            <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%A1%D7%95%D7%9C%D7%99%D7%98%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים<span class="sr"> (נפתח בוואטסאפ)</span></a>
+            <img src="img/emerald-yellow-s.webp?v=5" alt="" loading="lazy">
+            <span class="look__tag">בסגנון דומה מהקטלוג</span>
+            <h3>טבעת אמרלד</h3><p>זהב צהוב, שורת יהלומים</p>
+            <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%90%D7%9E%D7%A8%D7%9C%D7%93%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים<span class="sr"> (נפתח בוואטסאפ)</span></a>
           </div>
         </div>
         <div class="look" data-look>
-          <div class="look__img"><img src="img/p/neck-solitaire-1200.webp" srcset="img/p/neck-solitaire-1200.webp 1200w, img/p/neck-solitaire-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 460px" alt="תליון יהלום על הצוואר" loading="lazy"></div>
+          <div class="look__img"><img src="img/p/hand-rings-1200.webp" srcset="img/p/hand-rings-1200.webp 1200w, img/p/hand-rings-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 460px" alt="יד עם שתי טבעות יהלום עדינות" loading="lazy"></div>
           <div class="look__pc">
-            <img src="img/pear-pendant-s.webp" alt="" loading="lazy">
-            <h3>תליון טיפה</h3><p>זהב צהוב, שרשרת עדינה</p>
-            <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%AA%D7%9C%D7%99%D7%95%D7%9F%20%D7%98%D7%99%D7%A4%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים<span class="sr"> (נפתח בוואטסאפ)</span></a>
+            <img src="img/halo-cushion-s.webp?v=5" alt="" loading="lazy">
+            <span class="look__tag">בסגנון דומה מהקטלוג</span>
+            <h3>טבעת הילה כפולה</h3><p>באגטים במרכז, זהב לבן</p>
+            <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%98%D7%91%D7%A2%D7%AA%20%D7%94%D7%99%D7%9C%D7%94%20%D7%9B%D7%A4%D7%95%D7%9C%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים<span class="sr"> (נפתח בוואטסאפ)</span></a>
           </div>
         </div>
         <div class="look" data-look>
           <div class="look__img"><img src="img/p/wrist-bracelet-1200.webp" srcset="img/p/wrist-bracelet-1200.webp 1200w, img/p/wrist-bracelet-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 460px" alt="צמיד יהלומים על פרק היד" loading="lazy"></div>
           <div class="look__pc">
-            <img src="img/bangle-s.webp" alt="" loading="lazy">
-            <h3>צמיד קשיח</h3><p>שתי שורות יהלומים</p>
+            <img src="img/bangle-s.webp?v=5" alt="" loading="lazy">
+            <span class="look__tag">בסגנון דומה מהקטלוג</span>
+            <h3>צמיד קשיח</h3><p>שורות יהלומים, זהב אדום</p>
             <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A6%D7%9E%D7%99%D7%93%20%D7%A7%D7%A9%D7%99%D7%97%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener">לפרטים<span class="sr"> (נפתח בוואטסאפ)</span></a>
           </div>
         </div>
@@ -510,8 +565,7 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     <div class="hello__in">
     <div class="hello__ph rv"><img src="img/adir.webp" width="856" height="1070" alt="אדיר וסאל בחולצה לבנה, מחזיק ז׳קט שחור" loading="lazy"></div>
     <div class="hello__txt rv">
-      <span class="lat">Hello</span>
-      <h2>שלום, אני אדיר וסאל.</h2>
+      <h2>אדיר וסאל</h2>
       <p>אני עובד מתוך בורסת היהלומים ברמת גן, ושם אני בוחר כל אבן שאני מראה ללקוחות.</p>
       <p>כל פגישה מתחילה בכמה אבנים על השולחן והסבר פשוט על ההבדלים ביניהן. מהפגישה הראשונה ועד שהתכשיט אצלכם, אתם מדברים איתי.</p>
       <a class="btn" href="https://wa.me/972504646220?text=%D7%94%D7%99%D7%99%20%D7%90%D7%93%D7%99%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" target="_blank" rel="noopener">לתיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
@@ -520,7 +574,6 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
   </section>
 
   <section class="meet dark" id="meet">
-    <span class="lat" style="color:#8f8f8f">Private appointment</span>
     <h2>פגישה פרטית בבורסת היהלומים</h2>
     <p>בתיאום מראש בלבד. ראשון עד חמישי, 10:00–18:00. המחיר, זמני הייצור והתנאים נמסרים בכתב לפני שמתחילים.</p>
     <div class="meet__row">
@@ -535,23 +588,22 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
   <div class="ft">
     <div class="ft__logo"><img src="assets/img/mark.png" alt=""><span>ADIR VASSAL</span></div>
     <div class="ft__cols">
-      <div><h3>WEBSITE</h3><ul><li><a href="#pieces">קטלוג</a></li><li><a href="#about">אודות</a></li><li><a href="#meet">צור קשר</a></li><li><a href="en/index.html" lang="en">English</a></li></ul></div>
-      <div><h3>CATALOG</h3><ul><li><a href="#bridal">טבעות אירוסין</a></li><li><a href="#types">טבעות</a></li><li><a href="#types">שרשראות ותליונים</a></li><li><a href="#types">עגילים</a></li><li><a href="#types">צמידים</a></li></ul></div>
-      <div><h3>VISIT</h3><ul><li>בורסת היהלומים, רמת גן</li><li><a href="tel:+972504646220" dir="ltr">050-464-6220</a></li><li>א׳–ה׳ 10:00–18:00</li></ul></div>
+      <div><h3>האתר</h3><ul><li><a href="#pieces" data-cat="all">קטלוג</a></li><li><a href="#about">אודות</a></li><li><a href="#meet">צור קשר</a></li><li><a href="en/index.html" lang="en">English</a></li></ul></div>
+      <div><h3>קטלוג</h3><ul><li><a href="#bridal">טבעות אירוסין</a></li><li><a href="#pieces" data-cat="ring">טבעות</a></li><li><a href="#pieces" data-cat="necklace">שרשראות ותליונים</a></li><li><a href="#pieces" data-cat="earring">עגילים</a></li><li><a href="#pieces" data-cat="bracelet">צמידים</a></li></ul></div>
+      <div><h3>ביקור</h3><ul><li>בורסת היהלומים, רמת גן</li><li><a href="tel:+972504646220" dir="ltr">050-464-6220</a></li><li>א׳–ה׳ 10:00–18:00</li></ul></div>
     </div>
   </div>
   <p class="ft__base">© 2026 ADIR VASSAL DIAMONDS &amp; JEWELRY</p>
 </footer>
 
 <dialog class="lb" id="lb" aria-label="תצוגה מלאה">
-  <div class="lb__stage" id="lb-stage"><img id="lb-img" src="" alt="">
+  <div class="lb__stage" id="lb-stage"><img id="lb-img" alt="">
     <button class="lb__nav lb__nav--prev" type="button" data-lb="-1" aria-label="הקודם"><svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"/></svg></button>
     <button class="lb__nav lb__nav--next" type="button" data-lb="1" aria-label="הבא"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg></button>
   </div>
   <div class="lb__side">
     <h2 id="lb-name"></h2>
     <p id="lb-desc"></p>
-    <div class="lb__thumbs" id="lb-thumbs"></div>
     <a class="btn" id="lb-wa" href="#" target="_blank" rel="noopener">לפרטים ותיאום פגישה<span class="sr"> (נפתח בוואטסאפ)</span></a>
     <p class="lb__hint">לחיצה על התמונה מגדילה. אפשר לעבור בין התכשיטים בחיצים.</p>
   </div>
@@ -563,6 +615,8 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var narrow = matchMedia('(max-width: 760px)').matches;
   var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // films are chosen by screen size only: iPhone Safari reports no connection speed, so phones always get
+  // their own balanced version (sharp, about half the weight) and computers the full one
 
   // films keep themselves running: they retry when the browser refuses or interrupts playback,
   // after returning to the tab/app, and on the first tap when autoplay is blocked (iPhone Low Power Mode)
@@ -630,6 +684,16 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     });
   }
 
+  // safety net on phones: if the phone film has not started after a few seconds, drop to the light one
+  function lighter(k, lite, ms) {
+    if (!lite) return;
+    var t = setTimeout(function () {
+      if (needTap || k.v.readyState >= 3 || !k.wants()) return;
+      k.v.src = lite; k.v.load(); k.play();
+    }, ms);
+    k.v.addEventListener('playing', function () { clearTimeout(t); }, { once: true });
+  }
+
   // opening film
   var v = document.getElementById('film');
   if (v) {
@@ -638,7 +702,8 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     if (!reduce) {
       var heroFilm = keep(v, true);
       v.preload = 'auto';
-      v.src = narrow ? v.dataset.sq : (huge ? v.dataset.big : v.dataset.wide);
+      v.src = narrow ? v.dataset.phone : (huge ? v.dataset.big : v.dataset.wide);
+      if (narrow) lighter(heroFilm, v.dataset.lite, 4000);
       heroFilm.play();
       watch(heroFilm, 0.05);
     }
@@ -649,8 +714,29 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
   function sc() { hd.classList.toggle('is-solid', scrollY > hero.offsetHeight - 80); }
   addEventListener('scroll', sc, { passive: true }); sc();
   var bg = document.querySelector('.burger');
-  bg.addEventListener('click', function () { var o = hd.classList.toggle('open'); bg.setAttribute('aria-expanded', o); });
-  hd.querySelectorAll('.nav a').forEach(function (a) { a.addEventListener('click', function () { hd.classList.remove('open'); bg.setAttribute('aria-expanded', 'false'); }); });
+  function menu(o) {
+    hd.classList.toggle('open', o); bg.setAttribute('aria-expanded', o);
+    document.documentElement.style.overflow = o ? 'hidden' : '';
+  }
+  bg.addEventListener('click', function () { menu(!hd.classList.contains('open')); });
+  hd.querySelectorAll('.nav a').forEach(function (a) { a.addEventListener('click', function () { if (hd.classList.contains('open')) menu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && hd.classList.contains('open')) { menu(false); bg.focus(); } });
+  matchMedia('(min-width: 901px)').addEventListener('change', function (e) { if (e.matches && hd.classList.contains('open')) menu(false); });
+
+  // catalog filter: the chips, the type tiles and the footer all drive it
+  var grid = document.querySelector('.grid'), ask = document.getElementById('fl-ask');
+  var chips = [].slice.call(document.querySelectorAll('[data-filter]'));
+  function filter(c) {
+    var n = 0;
+    [].forEach.call(grid.children, function (p) { var on = c === 'all' || p.dataset.c === c; p.hidden = !on; if (on) n++; });
+    grid.classList.toggle('is-few', n < 4);
+    chips.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.filter === c); });
+    var chip = chips.filter(function (b) { return b.dataset.filter === c; })[0];
+    ask.hidden = c === 'all';
+    if (c !== 'all') { ask.querySelector('a').href = chip.dataset.wa; ask.querySelector('span').textContent = chip.dataset.ask; }
+  }
+  chips.forEach(function (b) { b.addEventListener('click', function () { filter(b.dataset.filter); }); });
+  document.querySelectorAll('[data-cat]').forEach(function (a) { a.addEventListener('click', function () { filter(a.dataset.cat); }); });
 
   // reveal on entry
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -10% 0px' });
@@ -658,8 +744,15 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   // the look carousel
   var looks = [].slice.call(document.querySelectorAll('[data-look]')), cur = 0;
-  document.querySelectorAll('.arrow').forEach(function (b) { b.addEventListener('click', function () {
-    looks[cur].classList.remove('is-on'); cur = (cur + (+b.dataset.step) + looks.length) % looks.length; looks[cur].classList.add('is-on'); }); });
+  function stepLook(d) { looks[cur].classList.remove('is-on'); cur = (cur + d + looks.length) % looks.length; looks[cur].classList.add('is-on'); }
+  document.querySelectorAll('.arrow').forEach(function (b) { b.addEventListener('click', function () { stepLook(+b.dataset.step); }); });
+  var lookBox = document.querySelector('.looks'), lx = null, ly = null;
+  lookBox.addEventListener('touchstart', function (e) { lx = e.touches[0].clientX; ly = e.touches[0].clientY; }, { passive: true });
+  lookBox.addEventListener('touchend', function (e) {
+    if (lx === null) return;
+    var dx = e.changedTouches[0].clientX - lx, dy = e.changedTouches[0].clientY - ly; lx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) stepLook((dx < 0) !== (document.dir === 'rtl') ? 1 : -1);
+  }, { passive: true });
 
   // the bench film only runs on screen
   var bv = document.getElementById('bench');
@@ -670,7 +763,8 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
       if (!es[0].isIntersecting) return;
       near.disconnect();
       bv.preload = 'auto';
-      bv.src = narrow ? bv.dataset.m : bv.dataset.full;
+      bv.src = narrow ? bv.dataset.phone : bv.dataset.full;
+      if (narrow) lighter(benchFilm, bv.dataset.m, 4000);
       benchFilm.play();
     }, { rootMargin: '500px 0px' });
     near.observe(bv);
@@ -690,22 +784,26 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 
   // full view of a piece
   var lb = document.getElementById('lb'), stage = document.getElementById('lb-stage'), big = document.getElementById('lb-img');
-  var thumbs = document.getElementById('lb-thumbs'), cards = [].slice.call(document.querySelectorAll('.pc__img')), at = 0, opener = null;
-  function show(i, k) {
-    at = (i + cards.length) % cards.length; var d = cards[at].dataset, imgs = d.imgs.split('|'); k = k || 0;
+  var cards = [].slice.call(document.querySelectorAll('.pc__img')), list = cards, at = 0, opener = null;
+  var ZOOM = 2.2, ox = 50, oy = 50;
+  function origin(x, y) {
+    ox = Math.max(0, Math.min(100, x)); oy = Math.max(0, Math.min(100, y));
+    big.style.setProperty('--ox', ox + '%'); big.style.setProperty('--oy', oy + '%');
+  }
+  function show(i) {
+    at = (i + list.length) % list.length; var d = list[at].dataset;
     stage.classList.remove('is-zoom');
-    big.src = imgs[k]; big.alt = d.name + ', ' + d.desc;
+    lb.classList.toggle('is-one', list.length < 2);
+    big.src = d.img; big.alt = d.name + ', ' + d.desc;
     document.getElementById('lb-name').textContent = d.name;
     document.getElementById('lb-desc').textContent = d.desc;
     document.getElementById('lb-wa').href = d.wa;
-    thumbs.innerHTML = '';
-    imgs.forEach(function (s, j) {
-      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-current', j === k);
-      b.setAttribute('aria-label', (j + 1) + ' / ' + imgs.length);
-      b.innerHTML = '<img src="' + s + '" alt="">'; b.onclick = function () { show(at, j); }; thumbs.appendChild(b);
-    });
   }
-  cards.forEach(function (c, i) { c.addEventListener('click', function () { opener = c; show(i); lb.showModal(); document.documentElement.style.overflow = 'hidden'; }); });
+  cards.forEach(function (c) { c.addEventListener('click', function () {
+    opener = c;
+    list = cards.filter(function (x) { return !x.closest('.pc').hidden; }); // arrows stay inside the chosen category
+    show(list.indexOf(c)); lb.showModal(); document.documentElement.style.overflow = 'hidden';
+  }); });
   lb.addEventListener('close', function () { document.documentElement.style.overflow = ''; if (opener) opener.focus(); });
   document.getElementById('lb-x').onclick = function () { lb.close(); };
   lb.querySelectorAll('[data-lb]').forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); show(at + (+b.dataset.lb)); }; });
@@ -714,16 +812,37 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
     if (e.key === 'ArrowLeft') show(at + (rtl ? 1 : -1));
     if (e.key === 'ArrowRight') show(at + (rtl ? -1 : 1));
   });
+  var dragged = false;
   stage.addEventListener('click', function (e) {
     if (e.target.closest('.lb__nav')) return;
-    var r = big.getBoundingClientRect();
-    big.style.setProperty('--ox', ((e.clientX - r.left) / r.width * 100) + '%'); big.style.setProperty('--oy', ((e.clientY - r.top) / r.height * 100) + '%');
+    if (dragged) { dragged = false; return; }
+    if (!stage.classList.contains('is-zoom')) {
+      var r = big.getBoundingClientRect();
+      origin((e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100);
+    }
     stage.classList.toggle('is-zoom');
   });
-  var sx = null;
-  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  // zoomed in: the mouse looks around the piece, a finger drags it
+  stage.addEventListener('mousemove', function (e) {
+    if (!fine || !stage.classList.contains('is-zoom')) return;
+    var s = stage.getBoundingClientRect();
+    origin((e.clientX - s.left) / s.width * 100, (e.clientY - s.top) / s.height * 100);
+  });
+  var sx = null, px = 0, py = 0;
+  stage.addEventListener('touchstart', function (e) {
+    sx = e.touches[0].clientX; px = sx; py = e.touches[0].clientY; dragged = false;
+  }, { passive: true });
+  stage.addEventListener('touchmove', function (e) {
+    if (!stage.classList.contains('is-zoom')) return;
+    var t = e.touches[0], w = big.offsetWidth, h = big.offsetHeight;
+    if (Math.abs(t.clientX - sx) > 6) dragged = true;
+    if (Math.abs(t.clientY - py) > 6 || Math.abs(t.clientX - px) > 6) dragged = true;
+    origin(ox - (t.clientX - px) / w * 100 / (ZOOM - 1), oy - (t.clientY - py) / h * 100 / (ZOOM - 1));
+    px = t.clientX; py = t.clientY;
+  }, { passive: true });
   stage.addEventListener('touchend', function (e) {
     if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (stage.classList.contains('is-zoom')) return;
     if (Math.abs(dx) > 50) show(at + ((dx < 0) !== (document.dir === 'rtl') ? 1 : -1));
   });
 })();
